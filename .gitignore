@@ -3,6 +3,7 @@
 .DS_Store
 Gemfile.lock
 pkg/*
-test/dummy
 .idea
 .rvmrc
+spec/dummy
+spec/test_app

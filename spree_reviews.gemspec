@@ -17,4 +17,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.8.7'
 
   s.add_dependency('spree_core', '~>1.3')
+  s.add_development_dependency 'factory_girl', '~> 2.6.4'
+  s.add_development_dependency 'rspec-rails', '~> 2.9'
+  s.add_development_dependency 'sqlite3'
 end
