@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.name        = 'spree_reviews'
   s.version     = '1.3'
   s.summary     = 'Basic review and ratings facility for Spree'
-  d.description = 'Straightforward review/rating facility'
+  s.description = 'Straightforward review/rating facility'
 
   s.author            = 'Service & Consulting'
   s.email             = 'service@secoint.ru'
