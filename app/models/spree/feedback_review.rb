@@ -1,4 +1,4 @@
-class FeedbackReview < ActiveRecord::Base
+class Spree::FeedbackReview < ActiveRecord::Base
   belongs_to :review
   belongs_to :user
 

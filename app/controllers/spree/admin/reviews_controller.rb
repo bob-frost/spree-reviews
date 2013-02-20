@@ -1,4 +1,4 @@
-class Admin::ReviewsController < Admin::ResourceController
+class Spree::Admin::ReviewsController < Spree::Admin::ResourceController
   helper :reviews
 
   def index

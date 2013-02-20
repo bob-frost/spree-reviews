@@ -1,6 +1,6 @@
-class Review < ActiveRecord::Base
+class Spree::Review < ActiveRecord::Base
   belongs_to :product
-  belongs_to :user
+  belongs_to :user, :class_name => Spree.user_class.to_s, :foreign_key => 'user_id'
   has_many   :feedback_reviews
 
   validates_presence_of :name, :review
@@ -12,7 +12,7 @@ class Review < ActiveRecord::Base
   scope :approval_filter, lambda {|*args| {:conditions => ["(? = ?) or (approved = ?)", Spree::Reviews::Config[:include_unapproved_reviews], true, true ]}}
 
   scope :oldest_first, :order => "created_at asc"
-  scope :preview,      :limit => Spree::Reviews::Config[:preview_size], :order=>"created_at desc"
+  scope :preview,      :limit => 10 #Spree::Reviews::Config[:preview_size], :order=>"created_at desc"
   attr_protected :user_id, :product_id, :ip_address
 
   def feedback_stars
