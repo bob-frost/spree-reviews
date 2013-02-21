@@ -1,3 +1,4 @@
+# TODO: move to appropriate place
 module Spree::Reviews
   class Config < Spree::Config
     class << self
