@@ -5,7 +5,7 @@ class Spree::Review < ActiveRecord::Base
 
   validates_presence_of :name, :review
   validates_numericality_of :rating, :only_integer => true
-  default_scope order("reviews.created_at DESC")
+  default_scope order("spree_reviews.created_at DESC")
   scope :approved,  where("approved = ?", true)
   scope :not_approved, where("approved = ?", false)
 
