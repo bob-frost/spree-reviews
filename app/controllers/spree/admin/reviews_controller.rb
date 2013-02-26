@@ -2,8 +2,8 @@ class Spree::Admin::ReviewsController < Spree::Admin::ResourceController
   helper :reviews
 
   def index
-    @unapproved_reviews = Spree::Review.not_approved.find(:all, :order => "created_at DESC")
-    @approved_reviews   = Spree::Review.approved.find(:all, :order => "created_at DESC")
+    @unapproved_reviews = Spree::Review.not_approved.all
+    @approved_reviews   = Spree::Review.approved.all
   end
 
   def approve
