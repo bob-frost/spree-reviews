@@ -1,5 +1,4 @@
 class Spree::Admin::FeedbackReviewsController < Spree::Admin::ResourceController
-  #belongs_to :review
 
   def create
     respond_to do |format|
@@ -18,4 +17,5 @@ class Spree::Admin::FeedbackReviewsController < Spree::Admin::ResourceController
       format.html { redirect_to collection_path }
     end
   end
+
 end

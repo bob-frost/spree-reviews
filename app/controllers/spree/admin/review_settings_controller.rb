@@ -5,6 +5,8 @@ class Spree::Admin::ReviewSettingsController < Spree::Admin::BaseController
     params[:preferences][:feedback_rating] = false            if params[:preferences][:feedback_rating].blank?
     params[:preferences][:show_email] = false                 if params[:preferences][:show_email].blank?
     params[:preferences][:require_login] = false              if params[:preferences][:require_login].blank?
+
+    # TODO: should be moved to native preferences?
     Spree::Reviews::Config.set(params[:preferences])
 
     respond_to do |format|
