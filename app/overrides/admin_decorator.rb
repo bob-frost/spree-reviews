@@ -10,6 +10,6 @@ Deface::Override.new(
     :virtual_path => 'spree/admin/shared/_configuration_menu',
     :name => 'add_social_providers_link_configuration_menu',
     :insert_bottom => %q{[data-hook='admin_configurations_sidebar_menu']},
-    :text => %q{<%= configurations_sidebar_menu_item(t('spree_reviews.review_settings'), admin_review_settings_path) %>},
+    :text => %q{<%= configurations_sidebar_menu_item(t('spree_reviews.review_settings'), edit_admin_review_settings_path) %>},
     :disabled => false
 )

@@ -6,13 +6,12 @@ class Spree::Admin::ReviewSettingsController < Spree::Admin::BaseController
     params[:preferences][:show_email] = false                 if params[:preferences][:show_email].blank?
     params[:preferences][:require_login] = false              if params[:preferences][:require_login].blank?
 
-    # TODO: should be moved to native preferences?
     Spree::Reviews::Config.set(params[:preferences])
 
     respond_to do |format|
-      format.html {
-        redirect_to admin_review_settings_path
-      }
+      format.html do
+        redirect_to edit_admin_review_settings_path
+      end
     end
   end
 end

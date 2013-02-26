@@ -12,7 +12,7 @@ class Spree::Review < ActiveRecord::Base
   scope :approval_filter, lambda {|*args| {:conditions => ["(? = ?) or (approved = ?)", Spree::Reviews::Config[:include_unapproved_reviews], true, true ]}}
 
   scope :oldest_first, :order => "created_at asc"
-  scope :preview,      :limit => 10 #Spree::Reviews::Config[:preview_size], :order=>"created_at desc"
+  scope :preview,      :limit => Spree::Reviews::Config[:preview_size], :order=>"created_at desc"
   attr_protected :user_id, :product_id, :ip_address
 
   def feedback_stars
