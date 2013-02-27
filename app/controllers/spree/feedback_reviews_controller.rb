@@ -1,4 +1,4 @@
-class Spree::FeedbackReviewsController < Spree::BaseController
+class Spree::FeedbackReviewsController < Spree::StoreController
   helper Spree::BaseHelper
   def create
     params[:feedback_review][:rating].sub!(/\s*stars/,'') unless params[:feedback_review][:rating].blank?
