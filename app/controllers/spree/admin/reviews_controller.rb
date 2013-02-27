@@ -1,5 +1,5 @@
 class Spree::Admin::ReviewsController < Spree::Admin::ResourceController
-  helper :reviews
+  helper Spree::ReviewsHelper
 
   def index
     @unapproved_reviews = Spree::Review.not_approved.all

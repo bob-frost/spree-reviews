@@ -12,6 +12,6 @@ class CreateFeedbackReviews < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :feedback_reviews
+    drop_table :spree_feedback_reviews
   end
 end

@@ -8,7 +8,7 @@
     <th><%= t('stars') %></th>
     <th></th>
   </tr>
-  <% collection.each do |feedback| %>
+  <% @collection.each do |feedback| %>
     <tr id="<%= dom_id(feedback) %>">
       <td><%= l feedback.created_at %></td>
       <td><%= feedback.user.try(:login) || "anonimus" %></td>
