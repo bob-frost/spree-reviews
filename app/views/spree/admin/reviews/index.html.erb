@@ -5,56 +5,68 @@
 <%= render :partial => 'spree/admin/shared/product_sub_menu' %>
 
 <% for reviews in [["Unapproved", @unapproved_reviews], ["Approved", @approved_reviews]] %>
-  <h2><%= t(reviews[0]+"_reviews") %></h2>
+    <fieldset class="no-border-top">
+      <fieldset class="no-border-bottom">
+        <legend align="center"><%= t(reviews[0]+"_reviews") %></legend>
+        <table cellspacing=6 class="index">
+          <colgroup>
+            <col style=""/>
+            <col style=""/>
+            <col style="width: 10%"/>
+            <col style="width: 20%"/>
+            <col style=""/>
+            <col style="width: 14%"/>
+          </colgroup>
+          <thead>
+          <tr>
+            <th><%= Spree::Review.human_attribute_name(:created_at) %></th>
+            <th><%= Spree::Review.human_attribute_name(:user) %></th>
+            <th><%= Spree::Review.human_attribute_name(:rating) %></th>
+            <th><%= Spree::Review.human_attribute_name(:title) %> / <%= t('product') %></th>
+            <th><%= Spree::Review.human_attribute_name(:review) %></th>
+            <th class='actions'></th>
+          </tr>
+          </thead>
 
-  <table cellspacing=6 class="index">
-    <thead>
-    <tr>
-      <th><%= Spree::Review.human_attribute_name(:created_at) %></th>
-      <th><%= Spree::Review.human_attribute_name(:user) %></th>
-      <th><%= Spree::Review.human_attribute_name(:rating) %></th>
-      <th><%= Spree::Review.human_attribute_name(:title) %> / <%= t('product') %></th>
-      <th><%= Spree::Review.human_attribute_name(:review) %></th>
-      <th class='actions'></th>
-    </tr>
-    </thead>
+          <tbody>
+          <% for review in reviews[1] %>
+              <tr id="<%= spree_dom_id review %>" class="<%= cycle('odd', 'even') %>">
+                <td>
+                  <%= l review.created_at, :format => :long %>
+                </td>
+                <td>
+                  <p><%= review.name %> / <%= review.user_id ? link_to(review.user.try(:email), [:admin, review.user]) : t(:guest) %></p>
 
-    <tbody>
-    <% for review in reviews[1] %>
-        <tr id="<%= spree_dom_id review %>" class="<%= cycle('odd', 'even') %>">
-          <td>
-            <%= l review.created_at, :format => :long %>
-          </td>
-          <td>
-            <p><%= review.name %> / <%= review.user_id ? link_to(review.user.try(:email), [:admin, review.user]) : t(:guest) %></p>
-
-            <p><%= Spree::Review.human_attribute_name(:ip_address) %>
-              : <%= review.ip_address ? link_to(review.ip_address, "http://whois.domaintools.com/#{review.ip_address}") : '-' %></p>
-          </td>
-          <td>
-            <%= txt_stars(review.rating) %>
-          </td>
-          <td>
-            <%= review.title %>
-            <% if review.product %>
-                <%= t('for') %> <%= link_to review.product.name, product_path(review.product) %>
-            <% end %>
-          </td>
-          <td width="50%">
-            <%= h review.review %>
-          </td>
-          <td class='actions'>
-            <% unless review.approved %>
-                <%= link_to_with_icon 'tick', t('approve'), {:action => 'approve', :id => review.id} %> <br/>
-            <% end %>
-            <%= link_to t('feedback'), admin_review_feedback_reviews_path(review) %>(<%= review.feedback_stars %>/<%= review.feedback_reviews.count %>) <br/>
-            <%= link_to_edit review %>
-            <br/>
-            <%= link_to_delete review %>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-  <br/>
+                  <p><%= Spree::Review.human_attribute_name(:ip_address) %>
+                    : <%= review.ip_address ? link_to(review.ip_address, "http://whois.domaintools.com/#{review.ip_address}") : '-' %></p>
+                </td>
+                <td>
+                  <%= txt_stars(review.rating) %>
+                </td>
+                <td>
+                  <%= review.title %>
+                  <% if review.product %>
+                      <%= t('for') %> <%= link_to review.product.name, product_path(review.product) %>
+                  <% end %>
+                </td>
+                <td width="50%">
+                  <%= h review.review %>
+                </td>
+                <td class='actions'>
+                  <% unless review.approved %>
+                      <%= link_to_with_icon('icon-check', t('approve'), {:action => 'approve', :id => review.id}, :no_text => true) %>
+                  <% end %>
+                  <%= link_to_edit(review, :no_text => true) %>
+                  <%= link_to_delete(review, :no_text => true) %>
+                  <br/>
+                  <br/>
+                  <%= link_to(t('feedback'), admin_review_feedback_reviews_path(review)) %>
+                  (<%= review.feedback_stars %>/<%= review.feedback_reviews.count %>)
+                </td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </fieldset>
+    </fieldset>
 <% end %>

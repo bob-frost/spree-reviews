@@ -11,10 +11,11 @@ class Spree::Admin::ReviewsController < Spree::Admin::ResourceController
 
     if r.update_attribute(:approved, true)
        r.product.recalculate_rating
-       flash[:notice] = t("info_approve_review")
+       flash[:notice] = t('info_approve_review')
     else
-       flash[:error] = t("error_approve_review")
+       flash[:error] = t('error_approve_review')
     end
+
     redirect_to admin_reviews_path
   end
 end
