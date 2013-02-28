@@ -1,7 +1,6 @@
 class Spree::FeedbackReviewsController < Spree::StoreController
   helper Spree::BaseHelper
   def create
-    # TODO: allow to create feedback only once per user per review
     params[:feedback_review][:rating].sub!(/\s*stars/,'') unless params[:feedback_review][:rating].blank?
 
     @review = Spree::Review.find_by_id(params[:review_id])

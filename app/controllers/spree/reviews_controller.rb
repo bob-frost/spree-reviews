@@ -13,7 +13,6 @@ class Spree::ReviewsController < Spree::StoreController
   end
 
   def create
-    # TODO: allow to create review only once per product per user
     params[:review][:rating].sub!(/\s*stars/,'') unless params[:review][:rating].blank?
 
     @review = Spree::Review.new(params[:review])
