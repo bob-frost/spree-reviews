@@ -1,21 +1,28 @@
-<h1><%= link_to t('feedback_review_for', :review => @review.title ), admin_reviews_path %></h1>
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
 
+<% content_for :page_title do %>
+    <%= link_to t('feedbacks_for_review', :review_name => (@review.title.empty? ? t(:review_without_title) : t(:review_with_title, :review_title => @review.title))), admin_reviews_path %>
+<% end %>
 
 <table class="index">
+  <thead>
   <tr>
     <th><%= t('date_') %></th>
     <th><%= t('user') %></th>
     <th><%= t('stars') %></th>
-    <th></th>
+    <th class="actions"></th>
   </tr>
+  </thead>
+  <tbody>
   <% @collection.each do |feedback| %>
-    <tr id="<%= dom_id(feedback) %>">
-      <td><%= l feedback.created_at %></td>
-      <td><%= feedback.user.try(:login) || "anonimus" %></td>
-      <td><%= feedback.rating %></td>
-      <td class="actions">
-        <%= link_to_delete feedback  %>
-      </td>
-    </tr>
+      <tr id="<%= dom_id(feedback) %>" class="<%= cycle('odd', 'even')%>">
+        <td><%= l feedback.created_at %></td>
+        <td><%= feedback.user.try(:login) || "anonimus" %></td>
+        <td><%= feedback.rating %></td>
+        <td class="actions">
+          <%= link_to_delete(feedback, :no_text => true) %>
+        </td>
+      </tr>
   <% end %>
+  </tbody>
 </table>

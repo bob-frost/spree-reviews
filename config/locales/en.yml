@@ -13,7 +13,7 @@ en:
       review:
         one: one review
         other: "%{count} reviews"
-  
+
   approve: Approve
   Approved_reviews: Approved
   approved_text: Unlocked comments will be published within 1-2 business days.
@@ -27,7 +27,9 @@ en:
   editing_review_for: 'Editing review for'
   error_approve_review: Error approving review
   feedback: Feedback
-  feedback_review_for: "Review: '%{review}'"
+  feedbacks_for_review: "Feedback for %{review_name}"
+  review_without_title: "review without title"
+  review_with_title: "'%{review_title}' review"
   for: for
   from: from
   guideline_text: We reserve the right not to post opinions unrelated to your product
